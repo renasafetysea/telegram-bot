@@ -59,7 +59,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     Matcher matcher = NOTIFICATION_TASK_PATTERN.matcher(text);
                     if (matcher.find()){
                         LocalDateTime localDateTime = parse(matcher.group(1));
-                        if (Objects.isNull(localDateTime)) {
+                        if (!Objects.isNull(localDateTime)) {
                             String message = matcher.group(3);
                             notificationTaskService.addNotificationTask(localDateTime, message, chatId);
                             telegramBot.execute(new SendMessage(chatId, "Ваша задача запланирована"));

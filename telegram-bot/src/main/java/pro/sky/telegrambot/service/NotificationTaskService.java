@@ -16,7 +16,7 @@ public class NotificationTaskService {
     public NotificationTaskService(NotificationTaskRepository notificationTaskRepository) {
         this.notificationTaskRepository = notificationTaskRepository;
     }
-@Transactional
+
     public void addNotificationTask(LocalDateTime localDateTime, String message, Long userId){
         NotificationTask notificationTask = new NotificationTask();
         notificationTask.setNotificationDateTime(localDateTime);
@@ -27,7 +27,6 @@ public class NotificationTaskService {
     public List<NotificationTask> findNotificationForSend(){
         return notificationTaskRepository.findNotificationTasksByNotificationDateTime(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
     }
-    @Transactional
     public void deleteTask(NotificationTask notificationTask) {
         notificationTaskRepository.delete(notificationTask);
 
